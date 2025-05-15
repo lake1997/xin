@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="zhuye.css">
+		<link rel="stylesheet" href="about out.css">
+	</head>
+	<body>
+		<div class="lianxilan">
+			<a>whatsapp:178-2052-0623</a>
+			<a>E-mail:booking@bh-covano.cn</a>
+			<a>本地时间:代码暂时还不会敲这个</a>
+			<a>语言:中/EN</a>
+		</div>
+		<!--顶部-->
+		<div class="hedder">
+			<div class="logo">
+				<h3>我的网页</h3>
+			</div>
+			<div class="nav">
+				<a href="zhuye.html">首页</a>
+				<a href="#">关于我们</a>
+				<a href="">业务服务</a>
+				<a href="">新闻资讯</a>
+				<a href="">联系我们</a>
+			</div>
+		</div>
+		<!--大图-->
+		<div class="carousel-container">
+		    <div class="carousel-track">
+		        <div class="slide" style="background: #ff6b6b;">Slide 1</div>
+		        <div class="slide" style="background: #4ecdc4;">Slide 2</div>
+		        <div class="slide" style="background: #45b7d1;">Slide 3</div>
+		    </div>
+		    
+		    <button class="carousel-button prev">❮</button>
+		    <button class="carousel-button next">❯</button>
+		    
+		    <div class="indicators"></div>
+		</div>
+		
+		<script>
+		    const track = document.querySelector('.carousel-track');
+		    const slides = Array.from(document.querySelectorAll('.slide'));
+		    const nextButton = document.querySelector('.next');
+		    const prevButton = document.querySelector('.prev');
+		    const indicatorsContainer = document.querySelector('.indicators');
+		
+		    let currentIndex = 0;
+		    let autoPlayInterval;
+		
+		    // 创建指示点
+		    slides.forEach((_, index) => {
+		        const indicator = document.createElement('button');
+		        indicator.classList.add('indicator');
+		        if (index === 0) indicator.classList.add('active');
+		        indicator.addEventListener('click', () => goToSlide(index));
+		        indicatorsContainer.appendChild(indicator);
+		    });
+		
+		    // 切换幻灯片函数
+		    function goToSlide(index) {
+		        currentIndex = (index + slides.length) % slides.length;
+		        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+		        updateIndicators();
+		    }
+		
+		    // 更新指示点状态
+		    function updateIndicators() {
+		        document.querySelectorAll('.indicator').forEach((indicator, index) => {
+		            indicator.classList.toggle('active', index === currentIndex);
+		        });
+		    }
+		
+		    // 自动播放
+		    function startAutoPlay() {
+		        autoPlayInterval = setInterval(() => {
+		            goToSlide(currentIndex + 1);
+		        }, 3000);
+		    }
+		
+		    // 事件监听
+		    nextButton.addEventListener('click', () => {
+		        clearInterval(autoPlayInterval);
+		        goToSlide(currentIndex + 1);
+		        startAutoPlay();
+		    });
+		
+		    prevButton.addEventListener('click', () => {
+		        clearInterval(autoPlayInterval);
+		        goToSlide(currentIndex - 1);
+		        startAutoPlay();
+		    });
+		
+		    // 启动自动播放
+		    startAutoPlay();
+		</script>
+		<div class="gongsixiangqing">主要内容</div>
+		<div class="dibucaidan">
+			<div class="zuolianxi">
+				<div>logo</div>
+				<div class="container">
+				    <div class="left-section">
+				        <h2 class="title">联系我们</h2>
+				        <div class="contact-info">
+				            <p>电话：138-1234-5678<br>（周一至周日 9:00-21:00）</p >
+				            <p>邮箱：contact@company.com</p >
+				            <p>地址：上海市浦东新区示例路123号</p >
+				        </div>
+				       <!-- <div class="qr-codes">
+				            <div class="qr-placeholder"></div>
+				            <div class="qr-placeholder"></div>
+				        </div>-->
+				    </div>
+				</div>
+			</div>
+			<div class="zhongcaidan">
+				<ul class="sub-menu">
+				    <li>主页</a></li>
+				    <li>公司动态</li>
+				    <li>市场活动</li>
+					<li>市场活动</li>
+				    <li>行业新闻</li>
+					<li>市场活动</li>
+				</ul>
+			</div>
+			<div class="zhong2">
+				<ul class="sub-menu">
+				    <li>重要公告</li>
+				    <li>公司动态</li>
+				    <li>市场活动</li>
+				    <li>行业新闻</li>
+					<li>其他</li>
+				</ul>
+			</div>
+			<div class="youyouxian">
+				<div class="right-section">
+				    <form class="contact-form">
+				        <input type="text" placeholder="姓名" required>
+				        <input type="tel" placeholder="电话" required>
+				        <input type="email" placeholder="E-mail" required>
+				        <!--<select>
+				            <option value="">服务需求</option>
+				            <option>咨询服务</option>
+				            <option>技术支持</option>
+				            <option>售后服务</option>
+				        </select>-->
+				        <textarea placeholder="留言内容"></textarea>
+				        <button type="submit" class="submit-btn">提交信息</button>
+				    </form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
